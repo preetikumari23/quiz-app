@@ -1,9 +1,6 @@
-/* ============================================================
-   QuizMaster Pro — style.css
-   All visual styles for the quiz application
-   ============================================================ */
 
-/* ── RESET & ROOT VARIABLES ── */
+
+
 *,
 *::before,
 *::after {
@@ -36,7 +33,7 @@
     --t: 0.22s;
 }
 
-/* ── BASE ── */
+
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background: var(--bg);
@@ -49,7 +46,7 @@ body {
     overflow-x: hidden;
 }
 
-/* Ambient background glow */
+
 body::before {
     content: '';
     position: fixed;
@@ -61,7 +58,7 @@ body::before {
     z-index: 0;
 }
 
-/* ── SCREEN SYSTEM ── */
+
 .screen {
     display: none;
     width: 100%;
@@ -87,9 +84,6 @@ body::before {
     }
 }
 
-/* ============================================================
-   SCREEN 1 — START
-   ============================================================ */
 .start-wrap {
     text-align: center;
     padding: 3rem 2rem;
@@ -170,9 +164,6 @@ body::before {
     font-weight: 600;
 }
 
-/* ============================================================
-   BUTTONS
-   ============================================================ */
 .btn {
     display: inline-flex;
     align-items: center;
@@ -225,9 +216,6 @@ body::before {
     font-size: 1.1rem;
 }
 
-/* ============================================================
-   SCREEN 2 — SETTINGS
-   ============================================================ */
 .settings-header {
     display: flex;
     align-items: center;
@@ -297,7 +285,6 @@ body::before {
     font-size: 1rem;
 }
 
-/* Difficulty-specific active colours */
 .difficulty-pills .pill[data-val="easy"].active {
     background: rgba(0, 200, 150, 0.12);
     border-color: var(--green);
@@ -348,11 +335,8 @@ body::before {
     color: var(--primary-light);
 }
 
-/* ============================================================
-   SCREEN 3 — QUIZ
-   ============================================================ */
 
-/* Top bar */
+
 .quiz-top {
     display: flex;
     align-items: center;
@@ -409,7 +393,7 @@ body::before {
     border: 1px solid rgba(255, 91, 91, 0.25);
 }
 
-/* Progress bar */
+
 .progress-track {
     height: 4px;
     background: var(--surface3);
@@ -425,7 +409,7 @@ body::before {
     transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Question card */
+
 .question-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -453,7 +437,7 @@ body::before {
     color: var(--text);
 }
 
-/* Options */
+
 .options-grid {
     display: flex;
     flex-direction: column;
@@ -514,7 +498,7 @@ body::before {
     color: var(--primary-light);
 }
 
-/* Answer states */
+
 .option-btn.correct {
     background: rgba(0, 200, 150, 0.10);
     border-color: var(--green);
@@ -544,7 +528,7 @@ body::before {
     transform: none !important;
 }
 
-/* Reveal correct after wrong pick */
+
 .option-btn.reveal {
     background: rgba(0, 200, 150, 0.06);
     border-color: rgba(0, 200, 150, 0.3);
@@ -603,9 +587,6 @@ body::before {
     color: var(--green);
 }
 
-/* ============================================================
-   SCREEN 4 — RESULTS
-   ============================================================ */
 .result-card {
     background: var(--surface);
     border: 1px solid var(--border);
@@ -628,7 +609,7 @@ body::before {
     pointer-events: none;
 }
 
-/* Score ring */
+
 .score-ring {
     width: 140px;
     height: 140px;
@@ -690,7 +671,7 @@ body::before {
     font-size: 0.95rem;
 }
 
-/* Stats grid */
+
 .stats-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -726,7 +707,7 @@ body::before {
     color: var(--red);
 }
 
-/* Review section */
+
 .review-section {
     text-align: left;
     margin-top: 1.5rem;
@@ -802,7 +783,7 @@ body::before {
     background: rgba(0, 200, 150, 0.10);
 }
 
-/* Result action buttons */
+
 .result-actions {
     display: flex;
     gap: 0.75rem;
@@ -818,7 +799,7 @@ body::before {
     display: none !important;
 }
 
-/* ── RESPONSIVE ── */
+
 @media (max-width: 480px) {
     .stats-grid {
         grid-template-columns: 1fr 1fr;
