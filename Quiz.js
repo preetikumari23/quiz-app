@@ -1,13 +1,4 @@
-/* ============================================================
-   QuizMaster Pro — quiz.js
-   Question bank + all quiz logic
-   ============================================================ */
 
-/* ============================================================
-   QUESTION BANK
-   Structure: QB[category][difficulty] = Array of question objects
-   Each question: { q, o (options array), a (correct option index) }
-   ============================================================ */
 const QB = {
 
     /* ── WEB DEVELOPMENT ── */
@@ -347,9 +338,6 @@ const QB = {
     }
 };
 
-/* ============================================================
-   CONSTANTS
-   ============================================================ */
 const CAT_LABELS = {
     webdev: "Web Dev",
     math: "Mathematics",
@@ -371,9 +359,6 @@ const DIFF_LABELS = {
 
 const OPTION_LABELS = ["A", "B", "C", "D"];
 
-/* ============================================================
-   STATE
-   ============================================================ */
 let cfg = {
     cat: "webdev",
     diff: "easy",
@@ -387,9 +372,6 @@ let quiz = {
     answers: []
 };
 
-/* ============================================================
-   UTILITIES
-   ============================================================ */
 
 /**
  * Fisher-Yates shuffle — mutates and returns the array.
@@ -432,9 +414,6 @@ function showScreen(id) {
     requestAnimationFrame(() => { el.style.animation = ""; });
 }
 
-/* ============================================================
-   SETTINGS HELPERS  (called from HTML onclick attributes)
-   ============================================================ */
 
 /**
  * Activate the clicked pill and deactivate siblings in the group.
@@ -455,9 +434,6 @@ function selectCount(el) {
     el.classList.add("active");
 }
 
-/* ============================================================
-   BUILD QUESTION POOL
-   ============================================================ */
 
 /**
  * Pull questions for a given category + difficulty,
@@ -511,9 +487,6 @@ function buildQuestions(cat, diff, count) {
     });
 }
 
-/* ============================================================
-   NAVIGATION
-   ============================================================ */
 
 /** Navigate to the settings screen. */
 function goToSettings() {
@@ -550,9 +523,6 @@ function retryQuiz() {
     startQuiz();
 }
 
-/* ============================================================
-   QUIZ RENDERING
-   ============================================================ */
 
 /** Render the current question (quiz.idx) to the DOM. */
 function renderQuestion() {
@@ -612,9 +582,6 @@ function renderQuestion() {
     document.getElementById("next-btn").classList.add("hidden");
 }
 
-/* ============================================================
-   ANSWER SELECTION
-   ============================================================ */
 
 /**
  * Handle the user's answer choice.
@@ -665,9 +632,6 @@ function nextQuestion() {
     }
 }
 
-/* ============================================================
-   RESULTS SCREEN
-   ============================================================ */
 
 /** Calculate scores, animate the ring, and populate the review list. */
 function showResults() {
