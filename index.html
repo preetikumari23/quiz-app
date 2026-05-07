@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QuizMaster Pro</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <!-- ════════════════════════════════
+       SCREEN 1 — START
+  ════════════════════════════════ -->
+    <div class="screen active" id="screen-start">
+        <div class="start-wrap">
+            <div class="brand-icon">🧠</div>
+            <h1 class="start-title">QuizMaster<br />Pro</h1>
+            <p class="start-sub">
+                Test your knowledge across Web Dev,<br />
+                Mathematics &amp; General Knowledge
+            </p>
+            <div class="stats-row">
+                <div class="stat-pill">📚 <span>54</span> Questions</div>
+                <div class="stat-pill">🎯 <span>3</span> Categories</div>
+                <div class="stat-pill">⚡ <span>3</span> Difficulty Levels</div>
+            </div>
+            <button class="btn btn-primary btn-lg btn-full" onclick="goToSettings()">
+                Start Quiz →
+            </button>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════
+       SCREEN 2 — SETTINGS
+  ════════════════════════════════ -->
+    <div class="screen" id="screen-settings">
+        <div class="settings-header">
+            <button class="btn btn-outline" onclick="showScreen('screen-start')"
+                style="padding:.5rem .9rem;font-size:.85rem">← Back</button>
+            <h2>Set Up Your Quiz</h2>
+        </div>
+
+        <!-- Category -->
+        <div class="settings-card">
+            <div class="section-label">📂 Choose Category</div>
+            <div class="pill-group" id="cat-group">
+                <button class="pill active" data-val="webdev" onclick="selectPill(this,'cat-group')">
+                    <span class="pill-icon">💻</span>Web Dev
+                </button>
+                <button class="pill" data-val="math" onclick="selectPill(this,'cat-group')">
+                    <span class="pill-icon">🔢</span>Mathematics
+                </button>
+                <button class="pill" data-val="gk" onclick="selectPill(this,'cat-group')">
+                    <span class="pill-icon">🌍</span>General Knowledge
+                </button>
+                <button class="pill" data-val="mixed" onclick="selectPill(this,'cat-group')">
+                    <span class="pill-icon">🎲</span>Mixed
+                </button>
+            </div>
+        </div>
+
+        <!-- Difficulty -->
+        <div class="settings-card">
+            <div class="section-label">⚡ Difficulty Level</div>
+            <div class="pill-group difficulty-pills" id="diff-group">
+                <button class="pill active" data-val="easy" onclick="selectPill(this,'diff-group')">🟢 Easy</button>
+                <button class="pill" data-val="medium" onclick="selectPill(this,'diff-group')">🟡 Medium</button>
+                <button class="pill" data-val="hard" onclick="selectPill(this,'diff-group')">🔴 Hard</button>
+                <button class="pill" data-val="all" onclick="selectPill(this,'diff-group')">🌈 All Levels</button>
+            </div>
+        </div>
+
+        <!-- Question Count -->
+        <div class="settings-card">
+            <div class="section-label">🎯 Number of Questions</div>
+            <div class="count-group" id="count-group">
+                <button class="count-btn active" data-val="5" onclick="selectCount(this)">5</button>
+                <button class="count-btn" data-val="10" onclick="selectCount(this)">10</button>
+                <button class="count-btn" data-val="15" onclick="selectCount(this)">15</button>
+                <button class="count-btn" data-val="all" onclick="selectCount(this)">All</button>
+            </div>
+        </div>
+
+        <button class="btn btn-primary btn-full btn-lg" style="margin-top:.5rem" onclick="startQuiz()">
+            🚀 Begin Quiz
+        </button>
+    </div>
+
+    <!-- ════════════════════════════════
+       SCREEN 3 — QUIZ
+  ════════════════════════════════ -->
+    <div class="screen" id="screen-quiz">
+
+        <!-- Top bar -->
+        <div class="quiz-top">
+            <div class="q-counter">
+                Question <strong id="q-current">1</strong> of <strong id="q-total">10</strong>
+            </div>
+            <div class="badge-row">
+                <span class="badge badge-cat" id="q-cat-badge">Web Dev</span>
+                <span class="badge badge-easy" id="q-diff-badge">Easy</span>
+            </div>
+        </div>
+
+        <!-- Progress bar -->
+        <div class="progress-track">
+            <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+        </div>
+
+        <!-- Question -->
+        <div class="question-card">
+            <div class="q-number" id="q-number-label">QUESTION 1</div>
+            <div class="q-text" id="q-text">Loading question…</div>
+        </div>
+
+        <!-- Options (injected by JS) -->
+        <div class="options-grid" id="options-grid"></div>
+
+        <!-- Footer -->
+        <div class="quiz-footer">
+            <div class="score-live">Score: <strong id="live-score">0</strong></div>
+            <button class="btn btn-primary hidden" id="next-btn" onclick="nextQuestion()">
+                Next →
+            </button>
+        </div>
+    </div>
+
+    <!-- ════════════════════════════════
+       SCREEN 4 — RESULTS
+  ════════════════════════════════ -->
+    <div class="screen" id="screen-result">
+        <div class="result-card">
+
+            <!-- Score ring -->
+            <div class="score-ring">
+                <svg viewBox="0 0 120 120">
+                    <circle class="ring-bg" cx="60" cy="60" r="52" />
+                    <circle class="ring-fill" id="ring-fill" cx="60" cy="60" r="52" stroke-dasharray="326.7"
+                        stroke-dashoffset="326.7" stroke="url(#ringGrad)" />
+                    <defs>
+                        <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="#6C63FF" />
+                            <stop offset="100%" stop-color="#00D4FF" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <div class="score-number">
+                    <div class="score-pct" id="result-pct">0%</div>
+                    <div class="score-label">SCORE</div>
+                </div>
+            </div>
+
+            <div class="result-title" id="result-title">🎉 Excellent!</div>
+            <div class="result-sub" id="result-sub">You answered 8 / 10 correctly</div>
+
+            <!-- Stats grid -->
+            <div class="stats-grid">
+                <div class="stat-box correct-stat">
+                    <div class="val" id="stat-correct">0</div>
+                    <div class="lbl">Correct</div>
+                </div>
+                <div class="stat-box wrong-stat">
+                    <div class="val" id="stat-wrong">0</div>
+                    <div class="lbl">Wrong</div>
+                </div>
+                <div class="stat-box">
+                    <div class="val" id="stat-total">0</div>
+                    <div class="lbl">Total</div>
+                </div>
+            </div>
+
+            <!-- Answer review -->
+            <div class="review-section">
+                <button class="review-toggle" onclick="toggleReview(this)">
+                    <span>📋 Review Answers</span>
+                    <span id="review-arrow">▼</span>
+                </button>
+                <div class="review-list hidden" id="review-list"></div>
+            </div>
+
+            <!-- Actions -->
+            <div class="result-actions">
+                <button class="btn btn-outline" onclick="goToSettings()">⚙️ New Settings</button>
+                <button class="btn btn-primary" onclick="retryQuiz()">🔄 Play Again</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="quiz.js"></script>
+</body>
+
+</html>
