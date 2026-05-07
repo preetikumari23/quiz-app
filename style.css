@@ -486,6 +486,12 @@ body::before {
     transform: translateX(4px);
 }
 
+.option-text {
+    color: var(--text);
+    line-height: 1.45;
+    overflow-wrap: anywhere;
+}
+
 .option-label {
     width: 28px;
     height: 28px;

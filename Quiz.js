@@ -405,6 +405,21 @@ function shuffle(arr) {
 }
 
 /**
+ * Escape quiz text before inserting it into HTML templates.
+ * This keeps answers like "<h1>" visible instead of parsing them as tags.
+ * @param {string} value
+ * @returns {string}
+ */
+function escapeHTML(value) {
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+/**
  * Hide all screens, then show the one with the given id.
  * Re-triggers the CSS animation on each call.
  * @param {string} id  — element id of the target screen
@@ -579,7 +594,16 @@ function renderQuestion() {
     q.shuffledOpts.forEach((opt, i) => {
         const btn = document.createElement("button");
         btn.className = "option-btn";
-        btn.innerHTML = `<span class="option-label">${OPTION_LABELS[i]}</span><span>${opt.text}</span>`;
+
+        const label = document.createElement("span");
+        label.className = "option-label";
+        label.textContent = OPTION_LABELS[i];
+
+        const text = document.createElement("span");
+        text.className = "option-text";
+        text.textContent = opt.text;
+
+        btn.append(label, text);
         btn.onclick = () => selectAnswer(i, btn);
         grid.appendChild(btn);
     });
@@ -686,13 +710,13 @@ function showResults() {
         const div = document.createElement("div");
         div.className = "review-item" + (ans.correct ? " got-right" : "");
         div.innerHTML = `
-      <div class="review-q">${i + 1}. ${ans.q}</div>
+      <div class="review-q">${i + 1}. ${escapeHTML(ans.q)}</div>
       <div class="review-answers">
         ${!ans.correct
-                ? `<div class="review-answer your-wrong">✗ Your answer: ${ans.yourAnswer}</div>`
+                ? `<div class="review-answer your-wrong">✗ Your answer: ${escapeHTML(ans.yourAnswer)}</div>`
                 : ""}
         <div class="review-answer correct-one">
-          ✓ ${ans.correct ? "Your answer (correct)" : "Correct answer"}: ${ans.correctAnswer}
+          ✓ ${ans.correct ? "Your answer (correct)" : "Correct answer"}: ${escapeHTML(ans.correctAnswer)}
         </div>
       </div>`;
         reviewList.appendChild(div);
