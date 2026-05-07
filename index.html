@@ -13,9 +13,7 @@
 
 <body>
 
-    <!-- ════════════════════════════════
-       SCREEN 1 — START
-  ════════════════════════════════ -->
+
     <div class="screen active" id="screen-start">
         <div class="start-wrap">
             <div class="brand-icon">🧠</div>
@@ -35,9 +33,7 @@
         </div>
     </div>
 
-    <!-- ════════════════════════════════
-       SCREEN 2 — SETTINGS
-  ════════════════════════════════ -->
+
     <div class="screen" id="screen-settings">
         <div class="settings-header">
             <button class="btn btn-outline" onclick="showScreen('screen-start')"
@@ -45,7 +41,7 @@
             <h2>Set Up Your Quiz</h2>
         </div>
 
-        <!-- Category -->
+
         <div class="settings-card">
             <div class="section-label">📂 Choose Category</div>
             <div class="pill-group" id="cat-group">
@@ -64,7 +60,7 @@
             </div>
         </div>
 
-        <!-- Difficulty -->
+
         <div class="settings-card">
             <div class="section-label">⚡ Difficulty Level</div>
             <div class="pill-group difficulty-pills" id="diff-group">
@@ -75,7 +71,7 @@
             </div>
         </div>
 
-        <!-- Question Count -->
+
         <div class="settings-card">
             <div class="section-label">🎯 Number of Questions</div>
             <div class="count-group" id="count-group">
@@ -91,12 +87,10 @@
         </button>
     </div>
 
-    <!-- ════════════════════════════════
-       SCREEN 3 — QUIZ
-  ════════════════════════════════ -->
+
     <div class="screen" id="screen-quiz">
 
-        <!-- Top bar -->
+
         <div class="quiz-top">
             <div class="q-counter">
                 Question <strong id="q-current">1</strong> of <strong id="q-total">10</strong>
@@ -107,21 +101,21 @@
             </div>
         </div>
 
-        <!-- Progress bar -->
+
         <div class="progress-track">
             <div class="progress-fill" id="progress-fill" style="width:0%"></div>
         </div>
 
-        <!-- Question -->
+
         <div class="question-card">
             <div class="q-number" id="q-number-label">QUESTION 1</div>
             <div class="q-text" id="q-text">Loading question…</div>
         </div>
 
-        <!-- Options (injected by JS) -->
+
         <div class="options-grid" id="options-grid"></div>
 
-        <!-- Footer -->
+
         <div class="quiz-footer">
             <div class="score-live">Score: <strong id="live-score">0</strong></div>
             <button class="btn btn-primary hidden" id="next-btn" onclick="nextQuestion()">
@@ -130,13 +124,10 @@
         </div>
     </div>
 
-    <!-- ════════════════════════════════
-       SCREEN 4 — RESULTS
-  ════════════════════════════════ -->
     <div class="screen" id="screen-result">
         <div class="result-card">
 
-            <!-- Score ring -->
+
             <div class="score-ring">
                 <svg viewBox="0 0 120 120">
                     <circle class="ring-bg" cx="60" cy="60" r="52" />
@@ -158,7 +149,7 @@
             <div class="result-title" id="result-title">🎉 Excellent!</div>
             <div class="result-sub" id="result-sub">You answered 8 / 10 correctly</div>
 
-            <!-- Stats grid -->
+
             <div class="stats-grid">
                 <div class="stat-box correct-stat">
                     <div class="val" id="stat-correct">0</div>
@@ -174,7 +165,7 @@
                 </div>
             </div>
 
-            <!-- Answer review -->
+
             <div class="review-section">
                 <button class="review-toggle" onclick="toggleReview(this)">
                     <span>📋 Review Answers</span>
@@ -183,7 +174,7 @@
                 <div class="review-list hidden" id="review-list"></div>
             </div>
 
-            <!-- Actions -->
+
             <div class="result-actions">
                 <button class="btn btn-outline" onclick="goToSettings()">⚙️ New Settings</button>
                 <button class="btn btn-primary" onclick="retryQuiz()">🔄 Play Again</button>
@@ -192,7 +183,7 @@
         </div>
     </div>
 
-    <script src="quiz.js"></script>
+    <script src="Quiz.js?v=2"></script>
 </body>
 
 </html>
